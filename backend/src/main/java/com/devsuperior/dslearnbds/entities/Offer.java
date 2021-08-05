@@ -24,20 +24,24 @@ public class Offer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String edition;
+	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant startMoment;
+
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant endMoment;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "course_id")
 	private Course course;
-
+	
 	@OneToMany(mappedBy = "offer")
 	private List<Resource> resources = new ArrayList<>();
-
+	
+	@OneToMany(mappedBy = "offer")
+	private List<Topic> topics = new ArrayList<>();	
+	
 	public Offer() {
-
 	}
 
 	public Offer(Long id, String edition, Instant startMoment, Instant endMoment, Course course) {
@@ -88,9 +92,13 @@ public class Offer implements Serializable {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
-
+	
 	public List<Resource> getResources() {
 		return resources;
+	}
+
+	public List<Topic> getTopics() {
+		return topics;
 	}
 
 	@Override
@@ -117,5 +125,4 @@ public class Offer implements Serializable {
 			return false;
 		return true;
 	}
-
 }

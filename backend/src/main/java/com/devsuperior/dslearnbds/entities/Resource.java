@@ -26,28 +26,27 @@ public class Resource implements Serializable {
 	private String title;
 	private String description;
 	private Integer position;
-	private String img_Uri;
+	private String imgUri;
 	private ResourceType type;
-
+	
 	@ManyToOne
 	@JoinColumn(name = "offer_id")
 	private Offer offer;
-	
+
 	@OneToMany(mappedBy = "resource")
 	private List<Section> sections = new ArrayList<>();
-
+	
 	public Resource() {
-
 	}
 
-	public Resource(Long id, String title, String description, Integer position, String img_Uri, ResourceType type,
+	public Resource(Long id, String title, String description, Integer position, String imgUri, ResourceType type,
 			Offer offer) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.position = position;
-		this.img_Uri = img_Uri;
+		this.imgUri = imgUri;
 		this.type = type;
 		this.offer = offer;
 	}
@@ -84,12 +83,12 @@ public class Resource implements Serializable {
 		this.position = position;
 	}
 
-	public String getImg_Uri() {
-		return img_Uri;
+	public String getImgUri() {
+		return imgUri;
 	}
 
-	public void setImg_Uri(String img_Uri) {
-		this.img_Uri = img_Uri;
+	public void setImgUri(String imgUri) {
+		this.imgUri = imgUri;
 	}
 
 	public ResourceType getType() {
@@ -132,5 +131,4 @@ public class Resource implements Serializable {
 			return false;
 		return true;
 	}
-
 }
